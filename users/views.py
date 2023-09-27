@@ -16,6 +16,7 @@ from django.http import HttpResponse, Http404
 from .KnnAlgorithm import KnnRecommender
 from django.conf import settings
 
+
 sujjdict = {}
 
 # Create your views here.

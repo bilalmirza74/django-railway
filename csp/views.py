@@ -2,6 +2,10 @@ from django.shortcuts import render,HttpResponse
 from cloud.models import CspRegisterModel
 from django.contrib import messages
 from users.models import CustomerCloudData,KNNSuggestionModel
+from django.views.decorators.csrf import csrf_protect
+
+
+@csrf_protect
 
 # Create your views here.
 

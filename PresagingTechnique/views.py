@@ -1,6 +1,10 @@
 from django.shortcuts import  render,HttpResponseRedirect
 from django.contrib import messages
 from .forms import CustomerRegistrationForm
+from django.views.decorators.csrf import csrf_protect
+
+
+@csrf_protect
 def index(request):
     return render(request,'index.html',{})
 
