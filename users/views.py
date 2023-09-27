@@ -15,12 +15,13 @@ from django.conf import settings
 from django.http import HttpResponse, Http404
 from .KnnAlgorithm import KnnRecommender
 from django.conf import settings
-
+from django.views.decorators.csrf import csrf_protect
 
 sujjdict = {}
 
 # Create your views here.
 
+@csrf_protect
 def UserLoginCheck(request):
     if request.method == "POST":
         loginid = request.POST.get('loginname')

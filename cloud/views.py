@@ -4,8 +4,11 @@ from PresagingTechnique.models import CustomerRegistrationModel
 from faker import Faker
 from .models import  CspRegisterModel
 from users.models import CustomerCloudData
+from django.views.decorators.csrf import csrf_protect
+
 # Create your views here.
 
+@csrf_protect
 def CloudLoginCheck(request):
     if request.method == 'POST':
         usrid = request.POST.get('loginname')

@@ -5,10 +5,8 @@ from users.models import CustomerCloudData,KNNSuggestionModel
 from django.views.decorators.csrf import csrf_protect
 
 
-@csrf_protect
-
 # Create your views here.
-
+@csrf_protect
 def CSPLoginCheck(request):
     if request.method=='POST':
         loginname = request.POST.get('loginname')
