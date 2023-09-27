@@ -2,11 +2,11 @@ from django.shortcuts import render,HttpResponse
 from cloud.models import CspRegisterModel
 from django.contrib import messages
 from users.models import CustomerCloudData,KNNSuggestionModel
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
-@csrf_protect
+@csrf_exempt
 def CSPLoginCheck(request):
     if request.method=='POST':
         loginname = request.POST.get('loginname')
@@ -25,9 +25,11 @@ def CSPLoginCheck(request):
 
     return HttpResponse('Works CSP great')
 
+@csrf_exempt
 def getCSPLoginDetails(request):
     return render(request,'GetCSPLoginDetails.html',{})
 
+@csrf_exempt
 def GetCSPLoginData(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -45,12 +47,14 @@ def GetCSPLoginData(request):
     messages.success(request, 'Login Details Not Found please approach Administrations')
     return render(request,'CspLogin.html',{})
 
+@csrf_exempt
 def CspDataView(request):
     csploginid = request.session['csploginname']
     cspservicename = request.session['service']
     data = CustomerCloudData.objects.filter(servicename=cspservicename)
     return render(request, 'csps/CspDataView.html', {'data': data})
 
+@csrf_exempt
 def CspViewSuggested(request):
     cspservicename = request.session['service']
     data = KNNSuggestionModel.objects.filter(servicename=cspservicename)

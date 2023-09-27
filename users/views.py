@@ -15,13 +15,13 @@ from django.conf import settings
 from django.http import HttpResponse, Http404
 from .KnnAlgorithm import KnnRecommender
 from django.conf import settings
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 sujjdict = {}
 
 # Create your views here.
 
-@csrf_protect
+@csrf_exempt
 def UserLoginCheck(request):
     if request.method == "POST":
         loginid = request.POST.get('loginname')
@@ -48,7 +48,7 @@ def UserLoginCheck(request):
         messages.success(request, 'Invalid Login id and password')
     return render(request, 'CustomerLogin.html', {})
 
-
+@csrf_exempt
 def CustExploreService(request):
     email = request.session['email']
     # knnalgorithm()
@@ -113,7 +113,7 @@ def CustExploreService(request):
     # knnalgorithm('Microsoft Office')
     return render(request, 'users/ServiceExplore.html', {'dict': dict, 'hisDict': hisDict})
 
-
+@csrf_exempt
 def CustUploadData(request):
     if request.method == 'POST':
         datatype = request.POST.get('datatype')
@@ -132,17 +132,19 @@ def CustUploadData(request):
 
     return redirect('CustExploreService')
 
-
+@csrf_exempt
 def CustomerViewData(request):
     custname = request.session['loginid']
     data = CustomerCloudData.objects.filter(custname=custname)
     return render(request, 'users/CustViewData.html', {'data': data})
 
+@csrf_exempt
 def CustSuggestions(request):
     custname = request.session['loginid']
     data = KNNSuggestionModel.objects.filter(username=custname)
     return render(request,'users/CustSuggetions.html',{'data':data})
 
+@csrf_exempt
 def CustDownload(request):
     path = request.GET.get('uid')
     file_path = os.path.join("/", path)

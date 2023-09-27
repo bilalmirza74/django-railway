@@ -4,11 +4,11 @@ from PresagingTechnique.models import CustomerRegistrationModel
 from faker import Faker
 from .models import  CspRegisterModel
 from users.models import CustomerCloudData
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-@csrf_protect
+@csrf_exempt
 def CloudLoginCheck(request):
     if request.method == 'POST':
         usrid = request.POST.get('loginname')
@@ -22,11 +22,12 @@ def CloudLoginCheck(request):
             messages.success(request, 'Please Check Your Login Details')
     return render(request, 'CloudLogin.html')
 
-
+@csrf_exempt
 def CloudCustomers(request):
     cust = CustomerRegistrationModel.objects.all()
     return render(request,'clouds/CloudCust.html',{'cust':cust})
 
+@csrf_exempt
 def CloudActivateUsers(request):
     if request.method == 'GET':
         id = request.GET.get('uid')
@@ -35,10 +36,13 @@ def CloudActivateUsers(request):
         CustomerRegistrationModel.objects.filter(id=id).update(status=status)
         cust = CustomerRegistrationModel.objects.all()
         return render(request,'clouds/CloudCust.html',{'cust':cust})
+    
+@csrf_exempt
 def CloudCSPAdding(request):
     csp = CspRegisterModel.objects.all()
     return render(request,'clouds/CloudCSP.html',{'csp':csp})
 
+@csrf_exempt
 def CloudCreateCsp(request):
     if request.method=='POST':
         cspname = request.POST.get('cspname')
@@ -62,7 +66,7 @@ def CloudCreateCsp(request):
 
     return redirect('CloudCSPAdding')
 
-
+@csrf_exempt
 def CloudDataView(request):
     data = CustomerCloudData.objects.all()
     return render(request, 'clouds/CloudDataView.html', {'data': data})
