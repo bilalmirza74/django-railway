@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'users',
     'csp',
     'cloud',
-    'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',   
+    'whitenoise.runserver_nostatic',  
 ]
 
 MIDDLEWARE = [
@@ -130,10 +129,8 @@ USE_TZ = True
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets/static')
-MEDIA_URL = '/media/'
 STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
