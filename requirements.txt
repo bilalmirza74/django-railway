@@ -1,7 +1,8 @@
+scikit-learn
+Django
 asgiref
 contourpy
 cycler
-Django
 Faker
 fonttools
 fuzzywuzzy
@@ -13,11 +14,9 @@ numpy
 packaging
 pandas
 Pillow
-py
 pyparsing
 python-dateutil
 pytz
-scikit-learn
 scipy
 six
 sklearn
