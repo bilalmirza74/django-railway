@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'users',
     'csp',
     'cloud',
-
+    'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',   
 ]
 
 MIDDLEWARE = [
@@ -127,11 +128,6 @@ USE_TZ = True
 # STATICFILES_DIRS = os.path.join(BASE_DIR, 'assets/static'),
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-INSTALLED_APPS = [
-    'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',    
-]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
